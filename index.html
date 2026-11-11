@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlanIT AI</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+</head>
+<body class="bg-[#F1F5F9]">
+    <header class=" flex justify-between bg-[#1C2541] p-auto">
+        <img class="w-24 h-24 object-cover rounded-2xl m-3" src="./images/logo.jpg" alt="logo">
+        <nav class=" flex items-center text-xl font-bold text-[#5BC0DE] gap-15"> 
+            <a href="index.html">Dashboard</a>
+            <a href="NvProjet.html"> Nouveau projet</a>
+        </nav>
+        <button class="  font-bold text-xl text-[#5BC0DE] bg-[#3A506B] rounded-xl p-2 m-8"> Paramètres IA</button>
+
+    </header>
+    <main>
+        <section class="">
+            <h1 class=" flex font-bold text-xl text-[#1C2541] p-10"> Votre projes :</h1>
+            <div class="flex justify-center border-2 border-dashed border-[#3A506B]">
+                <button href="NvProjet.html" class="  font-bold text-xl text-[#5BC0DE] bg-[#3A506B] rounded-xl p-2 m-8">+ Ajouter un nouveau projet</button>
+            </div>
+            <dialog id="modal">
+                <form id="Form">
+                <label>Votre cle API : <input type="text" id="input" required></label>
+                <button type="submit">Valider</button>
+                <button type="button" id="closeModal">Fermer</button>
+                </form>
+            </dialog>
+
+        </section>
+    </main>
+</body>
+</html>
