@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.80">
+    <title>PlanIT AI</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/parsleyjs@2.9.2/dist/parsley.min.js"></script>
+</head>
+<body class="bg-[#F1F5F9]">
+    <header class=" flex justify-between bg-[#1C2541] p-auto">
+        <img class="w-24 h-24 object-cover rounded-2xl m-3" src="./images/logo.jpg" alt="logo">
+        <nav class=" flex items-center text-xl font-bold text-[#5BC0DE] gap-15"> 
+            <a href="index.html">Dashboard</a>
+            <a href="NvProjet.html"> Nouveau projet</a>
+        </nav>
+        <button class="  font-bold text-xl text-[#5BC0DE] bg-[#3A506B] rounded-xl p-2 m-8"> Paramètres IA</button>
+
+    </header>
+    <main>
+        <div class="flex flex-col items-start m-10">
+            <h1 class=" font-bold text-4xl text-[#1C2541]"> Creer votre nouveau projet !</h1>
+            <p class=" text-[#3A506B]" > Remplisser ce formulaire pour creer votre propre planification en AI </p>
+        </div>
+
+        <form id="form" class="h-[800px] text-xl flex flex-col  justify-between items-center w-[80%] p-10 m-auto mb-10 border-2 border-solid border-[#3A506B]" data-parsley-validate>
+            <label for="nom">Nom de projet: </label>
+            <input id="nom" type="text" class="w-[80%] h-12 rounded-xl bg-white border-2 border-solid border-[#3A506B] placeholder-[#3A506B]" placeholder=" nom de projet" data-parsley-required="true" data-parsley-required-message="Ce champ est obligatoire.">
+ 
+            <label for="description">Description du projet: </label>
+            <textarea id="description" type="text" class="resize-none w-[80%] h-12 rounded-xl bg-white border-2 border-solid border-[#3A506B] placeholder-[#3A506B]" placeholder=" decrire le projet" data-parsley-required="true" data-parsley-required-message="Ce champ est obligatoire."> </textarea>
+            
+            <label for="brief">Brief complet : </label>
+            <textarea id="brief" type="text" class="resize-none w-[80%] h-12 rounded-xl bg-white border-2 border-solid border-[#3A506B] placeholder-[#3A506B]" placeholder=" brief complet" data-parsley-required="true" data-parsley-required-message="Ce champ est obligatoire."> </textarea>
+            
+            <div class="flex justify-around w-full">
+                <div class="flex flex-col">
+                    <label for="duree">Durée  de projet: </label>
+                    <input id="duree" type="number" class=" h-12 rounded-xl bg-white border-2 border-solid border-[#3A506B] placeholder-[#3A506B]" min="1" placeholder=" durée de projet en jour" data-parsley-required="true" data-parsley-required-message="Ce champ est obligatoire.">
+                </div>
+                <div class="flex flex-col">
+                    <label for="nmbDev"> Nombre de développeurs: </label>
+                    <input id="nmbDev" type="number" class=" h-12 rounded-xl bg-white border-2 border-solid border-[#3A506B] placeholder-[#3A506B]" min="1" placeholder=" nombre de développeurs" data-parsley-required="true" data-parsley-required-message="Ce champ est obligatoire.">
+                </div>
+            </div>
+
+            <label for="technologies">Technologies : </label>
+            <input id="technologies" type="text" class="w-[80%] h-12 rounded-xl bg-white border-2 border-solid border-[#3A506B] placeholder-[#3A506B]" placeholder=" les technologies va utiliser " data-parsley-required="true" data-parsley-required-message="Ce champ est obligatoire.">
+            
+            <label for="nvDiff">Niveau de difficulté : </label>
+            <select id="nvDiff" type="text" class="w-[80%] h-12 rounded-xl bg-white border-2 border-solid border-[#3A506B] placeholder-[#3A506B]" placeholder=" nom de projet"  data-parsley-required="true" data-parsley-required-message="Ce champ est obligatoire.">
+               <option class="[#3A506B]" value="" disabled selected> Sélectioner le niveau de difficulté</option>
+               <option value="Beginner ">Beginner </option> 
+               <option value="Intermediate ">Intermediate </option> 
+               <option value="Advanced">Advanced</option> 
+            </select>
+
+            <button type="submit" class="font-bold text-xl text-[#5BC0DE] bg-[#3A506B] rounded-xl p-2 m-8">Enregister</button>
+        </form>
+    </main>
+</body>
+</html>
