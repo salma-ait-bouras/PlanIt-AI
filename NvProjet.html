@@ -5,8 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.80">
     <title>PlanIT AI</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/parsleyjs@2.9.2/dist/parsley.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/parsleyjs@2.9.2/dist/parsley.min.js"></script>
+    <script type="module" src="./js/main.js" > </script>
+
+
 </head>
 <body class="bg-[#F1F5F9]">
     <header class=" flex justify-between bg-[#1C2541] p-auto">
@@ -15,7 +18,7 @@
             <a href="index.html">Dashboard</a>
             <a href="NvProjet.html"> Nouveau projet</a>
         </nav>
-        <button class="  font-bold text-xl text-[#5BC0DE] bg-[#3A506B] rounded-xl p-2 m-8"> Paramètres IA</button>
+        <button id="PaAI" class="font-bold text-xl text-[#5BC0DE] bg-[#3A506B] rounded-xl p-2 m-8 cursor-pointer transition duration-200 hover:shadow-lg"> Paramètres IA</button>
 
     </header>
     <main>
@@ -24,15 +27,15 @@
             <p class=" text-[#3A506B]" > Remplisser ce formulaire pour creer votre propre planification en AI </p>
         </div>
 
-        <form id="form" class="h-[800px] text-xl flex flex-col  justify-between items-center w-[80%] p-10 m-auto mb-10 border-2 border-solid border-[#3A506B]" data-parsley-validate>
+        <form id="Form" class="h-[800px] text-xl flex flex-col  justify-between items-center w-[80%] p-10 m-auto mb-10 border-2 border-solid border-[#3A506B]" data-parsley-validate>
             <label for="nom">Nom de projet: </label>
             <input id="nom" type="text" class="w-[80%] h-12 rounded-xl bg-white border-2 border-solid border-[#3A506B] placeholder-[#3A506B]" placeholder=" nom de projet" data-parsley-required="true" data-parsley-required-message="Ce champ est obligatoire.">
  
             <label for="description">Description du projet: </label>
-            <textarea id="description" type="text" class="resize-none w-[80%] h-12 rounded-xl bg-white border-2 border-solid border-[#3A506B] placeholder-[#3A506B]" placeholder=" decrire le projet" data-parsley-required="true" data-parsley-required-message="Ce champ est obligatoire."> </textarea>
+            <textarea id="description" type="text" class="resize-none w-[80%] h-12 rounded-xl bg-white border-2 border-solid border-[#3A506B] placeholder-[#3A506B]" placeholder=" decrire le projet" data-parsley-required="true" data-parsley-required-message="Ce champ est obligatoire."></textarea>
             
             <label for="brief">Brief complet : </label>
-            <textarea id="brief" type="text" class="resize-none w-[80%] h-12 rounded-xl bg-white border-2 border-solid border-[#3A506B] placeholder-[#3A506B]" placeholder=" brief complet" data-parsley-required="true" data-parsley-required-message="Ce champ est obligatoire."> </textarea>
+            <textarea id="brief" type="text" class="resize-none w-[80%] h-12 rounded-xl bg-white border-2 border-solid border-[#3A506B] placeholder-[#3A506B]" placeholder=" brief complet" data-parsley-required="true" data-parsley-required-message="Ce champ est obligatoire."></textarea>
             
             <div class="flex justify-around w-full">
                 <div class="flex flex-col">
@@ -49,15 +52,25 @@
             <input id="technologies" type="text" class="w-[80%] h-12 rounded-xl bg-white border-2 border-solid border-[#3A506B] placeholder-[#3A506B]" placeholder=" les technologies va utiliser " data-parsley-required="true" data-parsley-required-message="Ce champ est obligatoire.">
             
             <label for="nvDiff">Niveau de difficulté : </label>
-            <select id="nvDiff" type="text" class="w-[80%] h-12 rounded-xl bg-white border-2 border-solid border-[#3A506B] placeholder-[#3A506B]" placeholder=" nom de projet"  data-parsley-required="true" data-parsley-required-message="Ce champ est obligatoire.">
+            <select id="nvDiff" type="text" class="w-[80%] h-12 rounded-xl bg-white border-2 border-solid border-[#3A506B] placeholder-[#3A506B]"  data-parsley-required="true" data-parsley-required-message="Ce champ est obligatoire.">
                <option class="[#3A506B]" value="" disabled selected> Sélectioner le niveau de difficulté</option>
-               <option value="Beginner ">Beginner </option> 
-               <option value="Intermediate ">Intermediate </option> 
+               <option value="Beginner">Beginner </option> 
+               <option value="Intermediate">Intermediate </option> 
                <option value="Advanced">Advanced</option> 
             </select>
 
-            <button type="submit" class="font-bold text-xl text-[#5BC0DE] bg-[#3A506B] rounded-xl p-2 m-8">Enregister</button>
+            <button id="envoyer" type="submit" class="font-bold text-xl text-[#5BC0DE] bg-[#3A506B] rounded-xl p-2 m-8 cursor-pointer transition duration-200 hover:shadow-lg">Enregister</button>
         </form>
+
+        <dialog  id="modal" class="m-auto w-[90%] max-w-md rounded-2xl bg-[#F1F5F9] p-0 shadow-2xl backdrop:bg-[#1C2541]/60">
+                <form id="Form" class="flex flex-col gap-5 p-8">
+                <label class="flex flex-col gap-2 font-bold text-[#1C2541]">Votre cle API : <input type="text" id="input" required class="rounded-xl border-2 border-[#3A506B] bg-white p-2 font-normal text-[#1C2541] focus:border-[#5BC0DE] focus:outline-none"></label>
+                <button type="submit" id="validation" class="font-bold text-[#5BC0DE] bg-[#3A506B] rounded-xl p-2 cursor-pointer transition duration-200 hover:shadow-lg">Valider</button>
+                <button type="button" id="closeModal" class="font-bold text-[#3A506B] bg-white border-2 border-[#3A506B] rounded-xl p-2 cursor-pointer transition duration-200 hover:shadow-lg">Fermer</button>
+                <button type="button" id="demo" class="font-bold text-[#1C2541] bg-[#5BC0DE] rounded-xl p-2 cursor-pointer transition duration-200 hover:shadow-lg">Mode démo</button>
+
+                </form>
+            </dialog>
     </main>
 </body>
 </html>
