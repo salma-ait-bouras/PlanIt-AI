@@ -1,10 +1,12 @@
-import { tretment } from "./sendprompt";
+import { tretment } from "./sendprompt.js";
 
 export function donneeForm (){
     const projets = [];
 
     const form = document.getElementById("Form");
     const btn = document.getElementById("envoyer");
+
+    if (!form || !btn) return;
 
     btn.addEventListener("click", (e)=> {
         e.preventDefault();

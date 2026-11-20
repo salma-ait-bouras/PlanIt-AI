@@ -14,23 +14,30 @@ let Data = getdata ()
 const ParametreAI = document.getElementById('PaAI');
 const close = document.getElementById('closeModal');
 const modal = document.getElementById('modal');
-const forme = document.getElementById('Form');
+const apiForm = modal.querySelector('form');
+const apiInput = document.getElementById('input');
+const validation = document.getElementById('validation');
 const demo = document.getElementById('demo');
-const APIstock = document.getElementById('validation')
+
+// La fonction storagAPI utilise la variable globale `input`.
+globalThis.input = apiInput;
 
 import { openmodal } from "./ui.js"; 
 import { closemodal } from "./ui.js"; 
 import { demos } from "./ui.js"; 
 
-import  {storagAPI} from "./parametre.js";
-storagAPI(APIstock)
-openmodal(modal,ParametreAI)
-closemodal(modal,close)
-demos(demo) 
+import { storagAPI } from "./parametre.js";
+storagAPI(validation);
+
+apiForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    modal.close();
+});
+
+openmodal(modal, ParametreAI);
+closemodal(modal, close);
+demos(modal, demo);
 
 import { donneeForm } from "./util.js";
 donneeForm();
-
-// import { afficherProjets } from "./ui.js";
-// afficherProjets()
-
+ 

@@ -11,7 +11,6 @@ export async function tretment(projet) {
         throw new Error("API Key introuvable !");
     }
 
-    // Générer le prompt à partir du projet
     let message = prompt(projet);
 
     try {
@@ -39,7 +38,7 @@ export async function tretment(projet) {
         }
 
         let data = await response.json();
-
+        console.log(data.choices[0].message.content)
         return data.choices[0].message.content;
 
     } catch (error) {
