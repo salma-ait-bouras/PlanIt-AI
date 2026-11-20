@@ -1,17 +1,16 @@
+import { tretment } from "./sendprompt";
 
-export function donneeForm() {
+export function donneeForm (){
     const projets = [];
 
     const form = document.getElementById("Form");
     const btn = document.getElementById("envoyer");
 
-    btn.addEventListener("click", function (e) {
+    btn.addEventListener("click", (e)=> {
         e.preventDefault();
-
         if (!$("#Form").parsley().isValid()) return;
-
         const projet = {
-            'NAME': document.getElementById("nom").value ,
+            'NAME': document.getElementById("nom").value,
             'NUMBDAYS': Number(document.getElementById("duree").value),
             'NUMDEVELOPERS': Number(document.getElementById("nmbDev").value),
             'TECHNOLOGIES': document.getElementById("technologies").value,
@@ -19,13 +18,18 @@ export function donneeForm() {
             'DESCRIPTION': document.getElementById("description").value,
             'BRIEF': document.getElementById("brief").value
         };
+
+        tretment(projet)
+
+        
         projets.push(projet);
-        console.log(projets)
+        localStorage.setItem("projets", JSON.stringify(projets));
+
+         
         form.reset();
     })
-}
-
-function build(projet){
+  }
+export function prompt(projet){
     return `You are an experienced Senior Project Manager and Agile Coach specialized in software development.
 Your mission is to analyze the project brief below and transform it into a detailed, realistic and well-organized development plan.
 PROJECT INFORMATION:
@@ -35,8 +39,7 @@ Team Size: ${projet.NUMDEVELOPERS} developer(s)
 Technologies: ${projet.TECHNOLOGIES}
 Difficulty Level: ${projet.DIFFICULTYLEVEL}
 Project Description: ${projet.DESCRIPTION}
-Project Brief:
-${projet.BRIEF}
+Project Brief:${projet.BRIEF}
 YOUR TASK:
 Analyze the project carefully and break it down into actionable development tasks. For each task, generate the following information:
 id: Unique task identifier (TASK-001, TASK-002...).title: Short, clear and descriptive title.description: Detailed explanation of what needs to be implemented.userStories: At least one user story following the format "As a [user], I want [feature] so that [benefit].

@@ -1,42 +1,92 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PlanIT AI</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script type="module" src="./js/main.js" defer> </script>
-   
+
 </head>
+
 <body class="bg-[#F1F5F9]">
     <header class=" flex justify-between bg-[#1C2541] p-auto">
         <img class="w-24 h-24 object-cover rounded-2xl m-3" src="./images/logo.jpg" alt="logo">
-        <nav class=" flex items-center text-xl font-bold text-[#5BC0DE] gap-15"> 
+        <nav class=" flex items-center text-xl font-bold text-[#5BC0DE] gap-15">
             <a href="index.html">Dashboard</a>
             <a href="NvProjet.html"> Nouveau projet</a>
-        </nav>  
-        <button type="button" id="PaAI" class="font-bold text-xl text-[#5BC0DE] bg-[#3A506B] rounded-xl p-2 m-8 cursor-pointer transition duration-200 hover:shadow-lg"> Paramètres IA</button>
+        </nav>
+        <button id="PaAI"
+            class="font-bold text-xl text-[#5BC0DE] bg-[#3A506B] rounded-xl p-2 m-8 cursor-pointer transition duration-200 hover:shadow-lg"> Paramètres IA</button>
 
     </header>
     <main>
+        <h1 class=" flex font-bold text-xl text-[#1C2541] p-10"> Votre projes :</h1>
+
+        <section>
+            <p id="aucunProjet" class="hidden text-center text-[#3A506B] p-10">Aucun projet pour le moment</p>
+            <div id="projetsUtilisateur" class=" hidden col-span-2 mt-[15px] h-full grid grid-cols-3 gap-6 p-6">
+                <div class="bg-[#F0F8FF] border-2 border-[#D6E6F5] rounded-[14px] p-6">
+                    <h3 id="nomProjet" class="text-xl font-bold text-[#122B50]"></h3>
+                    <p id="descriptionProjet" class="text-gray-500 mt-3"></p>
+                    <div class="grid grid-cols-3 gap-2 text-center mt-6">
+
+                        <div>
+                            <p class="text-sm text-[#122B50]">Total</p>
+                            <p id="Total" class="text-2xl font-bold text-[#122B50]"></p>
+                        </div>
+
+                        <div class="border-x-2 border-[#D6E6F5]">
+                            <p class="text-sm text-[#122B50]">Terminées</p>
+                            <p id="Terminees" class="text-2xl font-bold text-[#122B50]"></p>
+                        </div>
+
+                        <div>
+                            <p class="text-sm text-[#122B50]">Restantes</p>
+                            <p id="Restantes" class="text-2xl font-bold text-[#122B50]"></p>
+                        </div>
+
+                    </div>
+                    <div class="flex gap-2 mt-6">
+                        <a href="NvProjet.html" id="Ouvrirbtn"
+                            class=" bg-[#2B9BED] w-[50%] text-white text-center font-semibold px-4 py-3 rounded-[10px]">Ouvrir
+ <br> le projet</a>
+                        <button type="button" id="Supprimer"
+                            class="bg-[#2B9BED] w-[50%] text-white text-center font-semibold px-4 py-3 rounded-[10px]">Supprimer</button>
+                    </div>
+                </div>
+            </div>
+        </section>
         <section class="">
-            <h1 class=" flex font-bold text-xl text-[#1C2541] p-10"> Votre projes :</h1>
             <div class="flex justify-center">
-            <div class="flex justify-center  w-[40%] border-2 border-dashed border-[#3A506B]">
-                <a href="./NvProjet.html"><button class="font-bold text-xl text-[#5BC0DE] bg-[#3A506B] rounded-xl p-2 m-8 cursor-pointer transition duration-200 hover:shadow-lg">+ Ajouter un nouveau projet</button></a>
+                <div class="flex justify-center  w-[40%] border-2 border-dashed border-[#3A506B]">
+                    <a href="./NvProjet.html"><button
+                            class="font-bold text-xl text-[#5BC0DE] bg-[#3A506B] rounded-xl p-2 m-8 cursor-pointer transition duration-200 hover:shadow-lg">+
+                            Ajouter un nouveau projet</button></a>
+                </div>
             </div>
-            </div>
-            <dialog  id="modal" class="m-auto w-[90%] max-w-md rounded-2xl bg-[#F1F5F9] p-0 shadow-2xl backdrop:bg-[#1C2541]/60">
+
+            <dialog id="modal"
+                class="m-auto w-[90%] max-w-md rounded-2xl bg-[#F1F5F9] p-0 shadow-2xl backdrop:bg-[#1C2541]/60">
                 <form id="form" class="flex flex-col gap-5 p-8">
-                <label class="flex flex-col gap-2 font-bold text-[#1C2541]">Votre cle API : <input type="text" id="input" required class="rounded-xl border-2 border-[#3A506B] bg-white p-2 font-normal text-[#1C2541] focus:border-[#5BC0DE] focus:outline-none"></label>
-                <button type="submit" id="validation" class="font-bold text-[#5BC0DE] bg-[#3A506B] rounded-xl p-2 cursor-pointer transition duration-200 hover:shadow-lg">Valider</button>
-                <button type="button" id="closeModal" class="font-bold text-[#3A506B] bg-white border-2 border-[#3A506B] rounded-xl p-2 cursor-pointer transition duration-200 hover:shadow-lg">Fermer</button>
-                <button type="button" id="demo" class="font-bold text-[#1C2541] bg-[#5BC0DE] rounded-xl p-2 cursor-pointer transition duration-200 hover:shadow-lg">Mode démo</button>
+                    <label class=" flex flex-col gap-2 font-bold text-[#1C2541]">Votre cle API : <input type="password"
+                            id="input" required
+                            class="rounded-xl border-2 border-[#3A506B] bg-white p-2 font-normal text-[#1C2541] focus:border-[#5BC0DE] focus:outline-none"></label>
+                    <button type="submit" id="validation"
+                        class="font-bold text-[#5BC0DE] bg-[#3A506B] rounded-xl p-2 cursor-pointer transition duration-200 hover:shadow-lg">Valider</button>
+                    <button type="button" id="closeModal"
+                        class="font-bold text-[#3A506B] bg-white border-2 border-[#3A506B] rounded-xl p-2 cursor-pointer transition duration-200 hover:shadow-lg">Fermer</button>
+                    <button type="button" id="demo"
+                        class="font-bold text-[#1C2541] bg-[#5BC0DE] rounded-xl p-2 cursor-pointer transition duration-200 hover:shadow-lg">Mode
+                        démo</button>
 
                 </form>
             </dialog>
 
         </section>
+
     </main>
 </body>
+
 </html>

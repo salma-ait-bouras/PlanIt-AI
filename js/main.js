@@ -14,16 +14,23 @@ let Data = getdata ()
 const ParametreAI = document.getElementById('PaAI');
 const close = document.getElementById('closeModal');
 const modal = document.getElementById('modal');
-// const forme = document.getElementById('Form');
+const forme = document.getElementById('Form');
 const demo = document.getElementById('demo');
-
-import { donneeForm } from "./util.js";
-donneeForm ();
+const APIstock = document.getElementById('validation')
 
 import { openmodal } from "./ui.js"; 
 import { closemodal } from "./ui.js"; 
 import { demos } from "./ui.js"; 
 
+import  {storagAPI} from "./parametre.js";
+storagAPI(APIstock)
 openmodal(modal,ParametreAI)
 closemodal(modal,close)
-demos(demo)
+demos(demo) 
+
+import { donneeForm } from "./util.js";
+donneeForm();
+
+// import { afficherProjets } from "./ui.js";
+// afficherProjets()
+

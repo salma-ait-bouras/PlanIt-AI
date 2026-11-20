@@ -13,3 +13,11 @@ export function demos (button){
     button.addEventListener('click', (e)=> {modal.close()})
 
 }
+
+
+
+export function afficherProjets(){
+    const projets = JSON.parse(localStorage.getItem("projets") || "[]");
+    const conteneur = document.getElementById('projetsUtilisateur')
+
+}
